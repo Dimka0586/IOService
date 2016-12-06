@@ -13,13 +13,13 @@ import java.util.List;
 /**
  * Implemen
  */
-public class SensorDao extends AbstractJDBCDao<Sensor> {
+public class SensorJDBCDao extends AbstractJDBCDao<Sensor> {
     private final String CREATE_SQL = "INSERT INTO sensor (name) VALUES (?)";
     private final String SELECT_SQL = "SELECT * FROM sensor";
     private final String UPDATE_SQL = "UPDATE sensor SET name=? WHERE id=?";
     private final String DELETE_SQL = "DELETE FROM sensor WHERE id=?";
 
-    public SensorDao(Connection connection){
+    public SensorJDBCDao(Connection connection){
         super(connection);
     }
 
@@ -70,4 +70,5 @@ public class SensorDao extends AbstractJDBCDao<Sensor> {
         }
         return sensorList;
     }
+
 }

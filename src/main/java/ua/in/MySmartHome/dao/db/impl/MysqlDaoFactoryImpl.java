@@ -7,7 +7,6 @@ import ua.in.MySmartHome.dao.db.GenericDao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -41,7 +40,7 @@ public class MysqlDaoFactoryImpl implements DaoFactory {
 
     @Override
     public GenericDao getSensorDao(Connection connection) {
-        return new SensorDao(connection);
+        return new SensorJDBCDao(connection);
     }
 
 

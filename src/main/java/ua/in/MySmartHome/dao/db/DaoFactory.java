@@ -1,7 +1,5 @@
 package ua.in.MySmartHome.dao.db;
 
-import ua.in.MySmartHome.dao.db.impl.SensorDao;
-
 import java.sql.Connection;
 import java.sql.SQLException;
 
