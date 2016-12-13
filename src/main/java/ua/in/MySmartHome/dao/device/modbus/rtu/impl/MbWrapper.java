@@ -5,8 +5,9 @@ import ua.in.MySmartHome.model.GeneralDevice;
 /**
  * Created by Shevchenko on 06.12.2016.
  */
-public class MbWrapper<T> extends GeneralDevice {
+public abstract class MbWrapper<T> extends GeneralDevice {
     private T object;
+
 
     public MbWrapper(){
 
@@ -28,4 +29,6 @@ public class MbWrapper<T> extends GeneralDevice {
     public void setObject(T object) {
         this.object = object;
     }
+
+
 }

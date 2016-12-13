@@ -1,12 +1,14 @@
 package ua.in.MySmartHome.model;
 
+import java.util.List;
+
 /**
  * Created by shevchenko on 05.12.2016.
  */
 public class Sensor{
     private int id;
     private String name;
-    private ScaleData scaleData;
+    private SensorData sensorData;
 
 
     public Sensor(){
@@ -18,10 +20,6 @@ public class Sensor{
         this.name = name;
     }
 
-    public Sensor(int engMin, int engMax, float outMin, float outMax){
-        scaleData = new ScaleData(engMin, engMax, outMin, outMax);
-    }
-
     public int getId() {
         return id;
     }
@@ -30,16 +28,16 @@ public class Sensor{
         return name;
     }
 
-    public ScaleData getScaleData() {
-        return scaleData;
+    public SensorData getSensorData() {
+        return sensorData;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setScaleData(ScaleData scaleData) {
-        this.scaleData = scaleData;
+    public void setSensorData(SensorData sensorData) {
+        this.sensorData = sensorData;
     }
 
 }

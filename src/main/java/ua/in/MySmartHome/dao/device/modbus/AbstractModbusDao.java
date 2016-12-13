@@ -2,6 +2,7 @@ package ua.in.MySmartHome.dao.device.modbus;
 
 import ua.in.MySmartHome.dao.device.GenericDeviceDao;
 import ua.in.MySmartHome.dao.device.modbus.Modbus;
+import ua.in.MySmartHome.dao.device.modbus.rtu.impl.MbWrapper;
 import ua.in.MySmartHome.model.GeneralDevice;
 
 import java.util.List;
@@ -28,7 +29,8 @@ public abstract class AbstractModbusDao<T extends GeneralDevice> implements Gene
     }
 
     @Override
-    public void update(T t) {
-
+    public void write(T t) {
+        System.out.println("writingReg = " + t.getWritingReg());
+        modbusImpl.writeReg(t.getUnitAddress(), t.getStartAddress(), t.getWritingReg());
     }
 }

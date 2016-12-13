@@ -1,5 +1,7 @@
 package ua.in.MySmartHome.dao.db;
 
+import ua.in.MySmartHome.dao.db.impl.SensorDataJdbcDaoImpl;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -12,7 +14,14 @@ public interface DaoFactory{
     public Connection getConnection() throws SQLException;
 
     //public GenericDao getDao(Connection connection, Class daoClass);
-    public GenericDao getSensorDao(Connection connection);
+    public SensorJdbcDao getSensorDao(Connection connection);
+
+    //public GenericDao getDao(Connection connection, Class daoClass);
+    public SensorDataJdbcDaoImpl getSensorDataDao(Connection connection);
+
+    public VgdJdbcDao getVgdDao(Connection connection);
+
+    public VgdDataJdbcDao getVgdDataDao(Connection connection);
 
 
 }

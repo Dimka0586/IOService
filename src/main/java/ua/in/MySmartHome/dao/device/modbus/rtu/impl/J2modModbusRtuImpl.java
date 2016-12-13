@@ -31,7 +31,7 @@ public class J2modModbusRtuImpl implements Modbus {
     }
 
     @Override
-    public boolean readDiscInput(int unitId, int ref, byte num) {
+    public boolean readCoils(int unitId, int ref, byte num) {
         return false;
     }
 
@@ -59,7 +59,7 @@ public class J2modModbusRtuImpl implements Modbus {
     }
 
     @Override
-    public void writeHoldingReg(int unitId, int ref, int val) {
+    public void writeReg(int unitId, int ref, int val) {
         SerialConnection connection = getConnection();
         ModbusRequest req = new WriteSingleRegisterRequest(ref, new SimpleRegister(val));
         req.setUnitID(unitId);

@@ -1,25 +1,24 @@
 package ua.in.MySmartHome.dao.db.impl;
 
-import ua.in.MySmartHome.dao.db.AbstractJDBCDao;
+import ua.in.MySmartHome.dao.db.AbstractJdbcDao;
+import ua.in.MySmartHome.dao.db.SensorJdbcDao;
 import ua.in.MySmartHome.model.Sensor;
+import ua.in.MySmartHome.model.SensorData;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Implemen
  */
-public class SensorJDBCDao extends AbstractJDBCDao<Sensor> {
+public class SensorJdbcDaoImpl extends AbstractJdbcDao<Sensor> implements SensorJdbcDao {
     private final String CREATE_SQL = "INSERT INTO sensor (name) VALUES (?)";
     private final String SELECT_SQL = "SELECT * FROM sensor";
     private final String UPDATE_SQL = "UPDATE sensor SET name=? WHERE id=?";
     private final String DELETE_SQL = "DELETE FROM sensor WHERE id=?";
 
-    public SensorJDBCDao(Connection connection){
+    public SensorJdbcDaoImpl(Connection connection){
         super(connection);
     }
 
@@ -71,4 +70,26 @@ public class SensorJDBCDao extends AbstractJDBCDao<Sensor> {
         return sensorList;
     }
 
+    @Override
+    public SensorData getLastSensorData(Sensor sensor) {
+        String sql = "SELECT * FROM sensor_values WHERE sensor_id="+sensor.getId()+" ORDER BY id DESC LIMIT 1";
+        MysqlDaoFactoryImpl mysqlDaoFactory = new MysqlDaoFactoryImpl();
+        SensorDataJdbcDaoImpl sensorDataJDBCDao = mysqlDaoFactory.getSensorDataDao(mysqlDaoFactory.getConnection());
+        SensorJdbcDao sensorJdbcDao = mysqlDaoFactory.getSensorDao(mysqlDaoFactory.getConnection());
+        Connection connection = mysqlDaoFactory.getConnection();
+        Statement statement = null;
+        List<SensorData> sensorDataList = null;
+        try {
+            statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            sensorDataList = sensorDataJDBCDao.parseResultSet(rs);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (sensorDataList != null){
+            return sensorDataList.get(0);
+        }
+        return null;
+    }
 }

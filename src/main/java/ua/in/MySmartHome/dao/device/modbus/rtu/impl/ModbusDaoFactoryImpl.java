@@ -21,4 +21,10 @@ public class ModbusDaoFactoryImpl implements DaoDeviceFactory {
         return new SensorModbusDao(new J2modModbusRtuImpl(PORT_WIN, BAUD_RATE, DATA_BITS, PARITY,
                 STOP_BITS, ENCODING, ECHO));
     }
+
+    @Override
+    public VgdModbusDao getVgdModbusDao() {
+        return new VgdModbusDao(new J2modModbusRtuImpl(PORT_WIN, BAUD_RATE, DATA_BITS, PARITY,
+                STOP_BITS, ENCODING, ECHO));
+    }
 }

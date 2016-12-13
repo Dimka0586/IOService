@@ -9,11 +9,11 @@ import java.util.List;
 /**
  * Abstract class provides base implementation CRUD using JDBC
  */
-public abstract class AbstractJDBCDao<T> implements GenericDao<T>{
+public abstract class AbstractJdbcDao<T> implements GenericDao<T>{
 
     private Connection connection;
 
-    public AbstractJDBCDao(Connection connection){
+    public AbstractJdbcDao(Connection connection){
         this.connection = connection;
     }
 

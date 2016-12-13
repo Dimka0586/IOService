@@ -4,8 +4,10 @@ import ua.in.MySmartHome.dao.device.modbus.Modbus;
 import ua.in.MySmartHome.dao.device.modbus.AbstractModbusDao;
 import ua.in.MySmartHome.model.ScaleData;
 import ua.in.MySmartHome.model.Sensor;
+import ua.in.MySmartHome.model.SensorData;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,10 +26,10 @@ public class SensorModbusDao extends AbstractModbusDao<MbWrapper<Sensor>> {
 
     @Override
     public MbWrapper<Sensor> parseResult(MbWrapper<Sensor> sensorMbWrapper, List<Integer> list) {
-        ScaleData scaleData = sensorMbWrapper.getObject().getScaleData();
-        scaleData.setEng(list.get(0));
-
-        sensorMbWrapper.getObject().setScaleData(scaleData);
+        Sensor sensor = sensorMbWrapper.getObject();
+        SensorData sensorData = sensor.getSensorData();
+        sensorData.setEng(list.get(0));
+        sensorMbWrapper.getObject().setSensorData(sensorData);
         return sensorMbWrapper;
     }
 

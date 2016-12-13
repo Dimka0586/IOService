@@ -3,10 +3,11 @@ package ua.in.MySmartHome.model;
 /**
  * Created by Shevchenko on 21.11.2016.
  */
-public class GeneralDevice {
+public abstract class GeneralDevice {
 
     private int deviceAddress;
     private int startAddress;
+    protected int writingReg;
 
     public GeneralDevice(){
 
@@ -29,7 +30,18 @@ public class GeneralDevice {
         return startAddress;
     }
 
+    public int getDeviceAddress() {
+        return deviceAddress;
+    }
+
+    public int getWritingReg() {
+        setWritingReg();
+        return writingReg;
+    }
+
     public void setStartAddress(int startAddress){
         this.startAddress = startAddress;
     }
+
+    public abstract void setWritingReg();
 }

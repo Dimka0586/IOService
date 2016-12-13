@@ -1,13 +1,14 @@
 package ua.in.MySmartHome.dao.db.impl;
 
-import ua.in.MySmartHome.dao.db.DaoCreator;
 import ua.in.MySmartHome.dao.db.DaoFactory;
-import ua.in.MySmartHome.dao.db.GenericDao;
+import ua.in.MySmartHome.dao.db.SensorJdbcDao;
+import ua.in.MySmartHome.dao.db.VgdDataJdbcDao;
+import ua.in.MySmartHome.dao.db.VgdJdbcDao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Map;
+
 
 /**
  * Created by Shevchenko on 14.11.2016.
@@ -18,7 +19,7 @@ public class MysqlDaoFactoryImpl implements DaoFactory {
     private String url = "jdbc:mysql://localhost:3306/ioservice";
     private String user="root";
     private String password="root";
-    private Map<Class, DaoCreator> creators;
+
 
     public MysqlDaoFactoryImpl(){
         try {
@@ -39,10 +40,24 @@ public class MysqlDaoFactoryImpl implements DaoFactory {
     }
 
     @Override
-    public GenericDao getSensorDao(Connection connection) {
-        return new SensorJDBCDao(connection);
+    public SensorJdbcDao getSensorDao(Connection connection) {
+        return new SensorJdbcDaoImpl(connection);
     }
 
+    @Override
+    public SensorDataJdbcDaoImpl getSensorDataDao(Connection connection) {
+        return new SensorDataJdbcDaoImpl(connection);
+    }
+
+    @Override
+    public VgdJdbcDao getVgdDao(Connection connection) {
+        return new VgdJdbcDaoImpl(connection);
+    }
+
+    @Override
+    public VgdDataJdbcDao getVgdDataDao(Connection connection) {
+        return new VgdDataJdbcDaoImpl(connection);
+    }
 
 
 }
